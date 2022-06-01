@@ -1,0 +1,45 @@
+<div class="column">
+    <header>
+        <div class="column-title">
+            <input type="text" class="form-control input-custom" value="{{board?.title}}" (change)="changeTitle($event)"
+                (click)="selectAllText($event)" spellcheck="false" (blur)="handleClickOutside()"
+                (mousedown)="$event.preventDefault()" #inputRef>
+        </div>
+        <div class="column-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" size="sm">
+                </a>
+                <div class="dropdown-menu">
+                    <span class="dropdown-item" (click)="remove()">Remove this
+                        column</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div cdkDropListGroup>
+        <div cdkDropList id="{{board.key}}" [cdkDropListData]="cards" [cdkDropListConnectedTo]="connectedTo"
+            class="task-list" (cdkDropListDropped)="drop($event)">
+            <div class="task-item" *ngFor="let i of cards" cdkDrag>
+                <img *ngIf="i?.image" src="{{ i.image }}">
+                {{i?.title}}
+            </div>
+
+
+            <div class="add-new-card" *ngIf="isShow">
+                <textarea rows="2" class="form-control" placeholder="Enter a title for this card" #valueAdd
+                    name="valueAdd" [(ngModel)]="valueCard" (mousedown)="$event.stopPropagation()"></textarea>
+                <div class="group-btn">
+                    <button class="btn btn-primary">Add card</button>
+                    <i class="fa-solid fa-times icon" (click)="isShow = false"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer (mousedown)="$event.stopPropagation()" *ngIf="!isShow" (click)="showForm()">
+        <div class="footer-action">
+            <i class="fa-solid fa-plus icon"></i>Add another card
+        </div>
+    </footer>
+</div>

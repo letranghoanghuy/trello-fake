@@ -1,0 +1,181 @@
+@import "setting.scss";
+
+.trello-master {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 40px 50px 1fr;
+    background-color: $board-bg-color;
+    color: #333;
+
+    .navbar-board {
+        // height: 50px;
+        padding-left: $gap;
+        display: flex;
+        align-items: center;
+        font-size: 1.3rem;
+        background-color: $navbar-board-bg-color;
+
+        .board {
+            height: 30px;
+            width: 300px;
+            padding: 6px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            color: #fff;
+            background-color: hsla(0, 0, 100, 0.24);
+            border-radius: $coloumn-border-radius;
+            display: flex;
+            align-items: center;
+
+            .board-title {
+                width: 90%;
+                font-size: 14px;
+            }
+
+            &:hover {
+                background-color: hsla(0, 0, 100, 0.34);
+            }
+
+            .board-dropdown {
+                width: 10%;
+                position: relative;
+
+                .dropdown-toggle {
+                    padding: 0 7px;
+                    position: absolute;
+                    top: -15px;
+
+                    &::after {
+                        content: "...";
+                        border: none !important;
+                        outline: none !important;
+                        box-shadow: none !important;
+                        color: #333;
+                        font-size: 1.3rem;
+                        font-weight: bold;
+                    }
+
+                    &:hover {
+                        background-color: #091e4214;
+                    }
+                }
+            }
+        }
+
+        .add-new-board {
+            width: 200px;
+            height: 30px;
+            padding: 6px 20px;
+            cursor: pointer;
+            color: #fff;
+            margin-left: $gap;
+            font-size: 13px;
+            background-color: hsla(0, 0, 100, 0.24);
+            border-radius: $coloumn-border-radius;
+
+            &:hover {
+                background-color: hsla(0, 0, 100, 0.34);
+            }
+        }
+
+        .content-add-board {
+            padding: 5px;
+            width: 400px;
+            margin-left: 10px;
+            background-color: hsla(0, 0, 100, 0.34);
+            border-radius: $coloumn-border-radius;
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 65%;
+            }
+
+            .group-btn {
+                display: flex;
+                align-items: center;
+                padding-left: 10px;
+
+                button {
+                    font-size: 14px;
+                }
+
+                i {
+                    font-size: 20px;
+                    padding-left: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .board-columns {
+        display: flex;
+        margin: 0 $gap $gap;
+        overflow-x: auto;
+        gap: 10px;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+
+        &::-webkit-scrollbar:horizontal {
+            height: 11px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.24);
+            border-radius: 5px solid $list-bg-color;
+            background-clip: padding-box;
+        }
+
+        .add-column {
+            width: 300px;
+
+            .add-new-column {
+                width: 250px;
+                height: 32px;
+                // line-height: 32px;
+                padding: 6px 20px;
+                cursor: pointer;
+                color: #fff;
+                margin-left: $gap;
+                font-size: 15px;
+                background-color: hsla(0, 0, 100, 0.24);
+                border-radius: $coloumn-border-radius;
+
+                &:hover {
+                    background-color: hsla(0, 0, 100, 0.34);
+                }
+            }
+
+            .content-add-column {
+                padding: 5px;
+                width: 300px;
+                margin-left: 10px;
+                background-color: hsla(0, 0, 100, 0.34);
+                border-radius: $coloumn-border-radius;
+
+                .group-btn {
+                    display: flex;
+                    padding-top: 10px;
+                    align-items: center;
+
+                    i {
+                        font-size: 30px;
+                        padding-left: 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

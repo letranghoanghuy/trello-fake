@@ -1,0 +1,52 @@
+<div class="trello-master">
+  <app-appbar></app-appbar>
+  <nav class="navbar-board">
+    <div class="board" *ngFor="let board of boards">
+      <div class="board-title">
+        {{board.title}}
+      </div>
+      <div class="board-dropdown">
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" size="sm">
+          </a>
+          <div class="dropdown-menu">
+            <span class="dropdown-item" (click)="removeBoard(board.key,board.title)">Remove this board</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-new-board" *ngIf="showAddBoard == false" (click)="showBoard()">
+      <i class="fa-solid fa-plus icon"></i>Add another board
+    </div>
+
+    <div class="content-add-board" *ngIf="showAddBoard == true">
+      <input type="text" class="form-control" #valueAddBoard name="valueBoard" [(ngModel)]="valueBoard"
+        spellcheck="false">
+      <div class="group-btn">
+        <button class="btn btn-success" (click)="addBoard()">Add board</button>
+        <i class="fa-solid fa-times icon" (click)="showAddBoard = false"></i>
+      </div>
+    </div>
+
+  </nav>
+
+  <div cdkDropList #list="cdkDropList" cdkDropListOrientation="horizontal" class="board-columns"
+    [cdkDropListData]="columns" (cdkDropListDropped)="drop($event)">
+    <app-column *ngFor="let i of columns" [board]="i" (newItemEvent)="onUpdate($event)" cdkDrag></app-column>
+
+    <div class="add-column">
+      <div class="add-new-column" *ngIf="isShow == false" (click)="showForm()">
+        <i class="fa-solid fa-plus icon"></i>Add another column
+      </div>
+
+      <div class="content-add-column" *ngIf="isShow == true">
+        <input type="text" class="form-control" #valueAdd name="valueInput" [(ngModel)]="valueInput">
+        <div class="group-btn">
+          <button class="btn btn-success" (click)="addColumn()">Add list</button>
+          <i class="fa-solid fa-times icon" (click)="isShow = false"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

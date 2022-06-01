@@ -1,0 +1,157 @@
+@import "../setting.scss";
+
+div.column {
+    flex: 0 0 auto;
+    width: 300px;
+    // height: calc(100% - #{$gap});
+
+    > * {
+        background-color: $list-bg-color;
+        color: #333;
+        padding: 0 8px;
+    }
+
+    header {
+        padding-left: 15px;
+        height: $coloumn-header-height;
+        line-height: $coloumn-header-height;
+        font-size: 16px;
+        font-weight: bold;
+        border-top-left-radius: $coloumn-border-radius;
+        border-top-right-radius: $coloumn-border-radius;
+        cursor: pointer;
+
+        display: flex;
+        padding-right: 3px;
+        padding-top: 5px;
+
+        .column-title {
+            width: 90%;
+        }
+
+        .column-dropdown {
+            width: 10%;
+            position: relative;
+
+            .dropdown-toggle {
+                padding: 0 7px;
+                position: absolute;
+                top: -10px;
+
+                &::after {
+                    content: "...";
+                    border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    color: #333;
+                    font-size: 1.3rem;
+                }
+
+                &:hover {
+                    background-color: #091e4214;
+                }
+            }
+        }
+    }
+
+    footer {
+        padding-left: 10px;
+        height: $coloumn-footer-height;
+        line-height: $coloumn-footer-height;
+        border-bottom-left-radius: $coloumn-border-radius;
+        border-bottom-right-radius: $coloumn-border-radius;
+        color: #888;
+
+        .footer-action {
+            margin-left: 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+
+    div.task-list {
+        list-style-type: none;
+        margin: 0;
+        // max-height: calc(100vh - #{$coloumn-header-height} - #{$coloumn-footer-height});
+        max-height: 68vh;
+        min-height: 60px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+
+        &::-webkit-scrollbar:vertical {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: darken($color: $list-bg-color, $amount: 15);
+            // border-right: 4px solid transparent;
+            border-radius: 5px;
+            background-clip: padding-box;
+        }
+
+        div.task-item {
+            background-color: white;
+            padding: $gap;
+            border-radius: $card-border-radius;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+
+            &:not(:last-child) {
+                margin-bottom: $gap;
+            }
+
+            img {
+                display: block;
+                width: calc(100% + 2 * #{$gap});
+                margin: -$gap 0 $gap (-$gap);
+                border-top-left-radius: $card-border-radius;
+                border-top-right-radius: $card-border-radius;
+            }
+        }
+
+        .add-new-card {
+            padding-bottom: 10px;
+            .group-btn {
+                display: flex;
+                padding-top: 10px;
+                align-items: center;
+
+                i {
+                    font-size: 30px;
+                    padding-left: 10px;
+                    cursor: pointer;
+                    color: #b3b3b3;
+                }
+            }
+        }
+    }
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.task-list.cdk-drop-list-dragging .task-item:not(.cdk-drag-placeholder) {
+    // transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 0.18s ease-in-out;
+    transform: rotateZ(0deg);
+}
+
+.cdk-drag-animating {
+    //     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 0.18s ease;
+    transform: rotateZ(5deg);
+}
+
+.cdk-drag-preview {
+    background-color: white;
+    border-radius: $card-border-radius;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
